@@ -1,0 +1,42 @@
+class MinStack {
+    constructor() {
+        this.stack = []
+        this.minStack = []
+    }
+
+    /**
+     * @param {number} val
+     * @return {void}
+     */
+    push(val) {
+        this.stack.push(val)
+        if (this.minStack.length > 0) {
+            val = Math.min(val, this.minStack[this.minStack.length - 1])
+        }
+        this.minStack.push(val)
+    }
+
+    /**
+     * @return {void}
+     */
+    pop() {
+        this.stack.pop()
+        this.minStack.pop()
+    }
+
+    /**
+     * @return {number}
+     */
+    top() {
+        let val = this.stack.pop()
+        this.stack.push(val)
+        return val
+    }
+
+    /**
+     * @return {number}
+     */
+    getMin() {
+        return this.minStack[this.minStack.length - 1]
+    }
+}
